@@ -1,5 +1,5 @@
 #
-# FreeType 2 TFM module definition
+# FreeType 2 VF Font module definition
 #
 # Copyright 1996-2018 by
 # David Turner, Robert Wilhelm, and Werner Lemberg.
@@ -10,13 +10,11 @@
 # indicate that you have read the license and understand and accept it
 # fully.
 
+FTMODULE_H_COMMANDS += VF_DRIVER
 
-FTMODULE_H_COMMANDS += TFM_MODULE
-
-define TFM_MODULE
-$(OPEN_DRIVER) FT_Module_Class, tfm_module_class $(CLOSE_DRIVER)
-$(ECHO_DRIVER)tfm       $(ECHO_DRIVER_DESC)TFM helper module$(ECHO_DRIVER_DONE)
-
+define VF_DRIVER
+$(OPEN_DRIVER) FT_Driver_ClassRec, vf_driver_class $(CLOSE_DRIVER)
+$(ECHO_DRIVER)vf        $(ECHO_DRIVER_DESC)METAFONT bitmap fonts$(ECHO_DRIVER_DONE)
 endef
 
 # EOF
