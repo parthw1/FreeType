@@ -18,6 +18,7 @@
 
 #include <ft2build.h>
 #include "tfmmod.h"
+#include "tfmobjs.h"
 
 
   static
