@@ -121,14 +121,14 @@
             FT_Memory   memory,
             FT_Stream   stream )
   {
-    FT_Error    error;
+    FT_Error    error = FT_Err_Ok;
 
     parser->memory    = memory;
     parser->stream    = stream;
     parser->FontInfo  = NULL;
     parser->user_data = NULL;
 
-    return FT_Err_Ok;
+    return error;
   }
 
 
@@ -146,9 +146,10 @@
   {
     FT_Memory     memory = parser->memory;
     TFM_FontInfo  fi     = parser->FontInfo;
+    FT_Stream     stream = parser->stream;
     FT_Error      error  = FT_ERR( Syntax_Error );
 
-    FT_ULong      lf, lh, nc, nci, err;
+    FT_ULong      lf, lh, nc, nci;
     FT_ULong      offset_char_info, offset_param;
     FT_ULong      nw, nh, nd, ni, nl, nk, ne, np, bc, ec, i;
 
@@ -168,8 +169,6 @@
     fi->font_bbx_h = 0.0;
     fi->font_bbx_xoff = 0.0;
     fi->font_bbx_yoff = 0.0;
-
-    err = 0;
 
     if( FT_STREAM_SEEK( 0 ) )
       return error;
@@ -353,5 +352,14 @@
     return error;
   }
 
+
+  FT_LOCAL_DEF( FT_Error )
+  tfm_parse_kerns( TFM_Parser  parser )
+  {
+    FT_Error    error = FT_Err_Ok;
+
+    FT_UNUSED( parser );
+    return error;
+  }
 
 /* END */

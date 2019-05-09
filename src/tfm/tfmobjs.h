@@ -35,7 +35,7 @@ FT_BEGIN_HEADER
   /* Initialise the TFM stream */
   FT_LOCAL( FT_Error )
   tfm_init( TFM_Parser  parser,
-            FT_Memory   memory
+            FT_Memory   memory,
             FT_Stream   stream );
 
   /* Parse TFM metric data */
