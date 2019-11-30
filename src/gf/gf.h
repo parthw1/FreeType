@@ -27,15 +27,6 @@
 
 FT_BEGIN_HEADER
 
-#define  FONT_DRIVER_GF   1
-
-#define  GF_PRE          247
-#define  GF_ID           131
-#define  GF_POST         248
-#define  GF_CHAR_LOC     245
-#define  GF_CHAR_LOC0    246
-#define  GF_POST_POST    249
-
 #define  GF_PAINT_0        0
 #define  GF_PAINT_1        1
 #define  GF_PAINT_63      63
@@ -57,6 +48,14 @@ FT_BEGIN_HEADER
 #define  GF_XXX4         242
 #define  GF_YYY          243
 #define  GF_NO_OP        244
+#define  GF_CHAR_LOC     245
+#define  GF_CHAR_LOC0    246
+#define  GF_PRE          247
+#define  GF_POST         248
+#define  GF_POST_POST    249
+#define  GF_ID           131
+
+/* Commands 250-255 are undefined at present time (gftype) */
 
 FT_END_HEADER
 
