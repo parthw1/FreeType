@@ -27,6 +27,65 @@
 
 FT_BEGIN_HEADER
 
+  typedef struct  GF_PostambleRec_
+  {
+    FT_Long   ptr_p;
+    FT_Long   ds;    /* design_size */
+    FT_Long   cs;    /* check_sum */
+    FT_Long   hppp;
+    FT_Long   vppp;
+    FT_Long   min_m;
+    FT_Long   max_m;
+    FT_Long   min_n;
+    FT_Long   max_n;
+
+  } GF_PostambleRec;
+
+
+  typedef struct  GF_BocRec_
+  {
+    FT_Long   char_code;
+    FT_Long   prev_char;
+    FT_Long   min_m;
+    FT_Long   max_m;
+    FT_Long   min_n;
+    FT_Long   max_n;
+
+  } GF_BocRec;
+
+
+  typedef struct  GF_Boc1Rec_
+  {
+    FT_Byte   char_code;
+    FT_Byte   del_m;
+    FT_Byte   max_m;
+    FT_Byte   del_n;
+    FT_Byte   max_n;
+
+  } GF_Boc1Rec;
+
+
+  typedef struct  GF_CharLocRec_
+  {
+    FT_Byte   char_residue;
+    FT_Long   dx;           /* character escapements dx and dy*/
+    FT_Long   dy;
+    FT_Long   w;            /* character width */
+    FT_Long   ptr;          /* ptr to begining of character */
+
+  } GF_CharLocRec;
+
+
+  typedef struct  GF_CharLoc0Rec_   /* Same as char_loc, except dy=0 and dx=65536*dm */
+  {
+    FT_Byte   char_residue;
+    FT_Byte   dm;                   /* 0 <= dm < 256 */
+    FT_Long   w;
+    FT_Long   ptr;
+
+  } GF_CharLoc0Rec;
+
+
 #define  GF_PAINT_0        0
 #define  GF_PAINT_1        1
 #define  GF_PAINT_63      63
@@ -56,6 +115,7 @@ FT_BEGIN_HEADER
 #define  GF_ID           131
 
 /* Commands 250-255 are undefined at present time (gftype) */
+
 
 FT_END_HEADER
 
