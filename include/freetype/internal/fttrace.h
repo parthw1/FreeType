@@ -116,6 +116,9 @@ FT_TRACE_DEF( pcfread )
 FT_TRACE_DEF( bdfdriver )
 FT_TRACE_DEF( bdflib )
 
+  /* BDF font components */
+FT_TRACE_DEF( gfdriver )
+
   /* TFM helper module components */
 FT_TRACE_DEF( tfmobjs )
 
