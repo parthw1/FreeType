@@ -20,6 +20,9 @@
 #include FT_INTERNAL_STREAM_H
 #include FT_INTERNAL_OBJECTS_H
 
+#include FT_SERVICE_GF_H
+#include FT_SERVICE_FONT_FORMAT_H
+
 #include "gf.h"
 #include "gfdrivr.h"
 
@@ -208,6 +211,29 @@
   }
 
 
+ /*
+  *
+  * SERVICES LIST
+  *
+  */
+
+  static const FT_ServiceDescRec  gf_services[] =
+  {
+    { FT_SERVICE_ID_GF,          NULL },
+    { FT_SERVICE_ID_FONT_FORMAT, FT_FONT_FORMAT_GF },
+    { NULL, NULL }
+  };
+
+  FT_CALLBACK_DEF( FT_Module_Interface )
+  gf_driver_requester( FT_Module    module,
+                       const char*  name )
+  {
+    FT_UNUSED( module );
+
+    return ft_service_list_lookup( gf_services, name );
+  }
+
+
   FT_CALLBACK_TABLE_DEF
   const FT_Driver_ClassRec  gf_driver_class =
   {
@@ -220,11 +246,11 @@
       0x10000L,
       0x20000L,
 
-      NULL,    									/* module-specific interface */
+      NULL,                     /* module-specific interface */
 
       NULL,                     /* FT_Module_Constructor  module_init   */
       NULL,                     /* FT_Module_Destructor   module_done   */
-      NULL      								/* FT_Module_Requester    get_interface */
+      gf_driver_requester       /* FT_Module_Requester    get_interface */
     },
 
     sizeof ( GF_FaceRec ),
@@ -244,8 +270,8 @@
     NULL,                       /* FT_Face_AttachFunc       attach_file  */
     NULL,                       /* FT_Face_GetAdvancesFunc  get_advances */
 
-    GF_Size_Request,           /* FT_Size_RequestFunc  request_size */
-    GF_Size_Select             /* FT_Size_SelectFunc   select_size  */
+    GF_Size_Request,            /* FT_Size_RequestFunc  request_size */
+    GF_Size_Select              /* FT_Size_SelectFunc   select_size  */
   };
 
 
