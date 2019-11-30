@@ -19,8 +19,6 @@
 #include FT_INTERNAL_DEBUG_H
 #include FT_INTERNAL_STREAM_H
 #include FT_INTERNAL_OBJECTS_H
-#include FT_GF_H
-
 
 #include "gf.h"
 #include "gfdrivr.h"
@@ -35,8 +33,86 @@
    * messages during execution.
    */
 #undef  FT_COMPONENT
-#define FT_COMPONENT  gf
+#define FT_COMPONENT  gfdriver
 
+
+  static const FT_Frame_Field  gf_postamble_fields[] =
+  {
+#undef  FT_STRUCTURE
+#define FT_STRUCTURE  GF_PostambleRec
+
+    FT_FRAME_START( 36 ),
+      FT_FRAME_LONG ( ptr_p ),
+      FT_FRAME_LONG ( ds ),
+      FT_FRAME_LONG ( cs ),
+      FT_FRAME_LONG ( hppp ),
+      FT_FRAME_LONG ( vppp ),
+      FT_FRAME_LONG ( min_m ),
+      FT_FRAME_LONG ( max_m ),
+      FT_FRAME_LONG ( min_n ),
+      FT_FRAME_LONG ( max_n ),
+    FT_FRAME_END
+  };
+
+
+  static const FT_Frame_Field  gf_bocrec_fields[] =
+  {
+#undef  FT_STRUCTURE
+#define FT_STRUCTURE  GF_BocRec
+
+    FT_FRAME_START( 24 ),
+      FT_FRAME_LONG ( char_code ),
+      FT_FRAME_LONG ( prev_char ),
+      FT_FRAME_LONG ( min_m ),
+      FT_FRAME_LONG ( max_m ),
+      FT_FRAME_LONG ( min_n ),
+      FT_FRAME_LONG ( max_n ),
+    FT_FRAME_END
+  };
+
+
+  static const FT_Frame_Field  gf_boc1rec_fields[] =
+  {
+#undef  FT_STRUCTURE
+#define FT_STRUCTURE  GF_Boc1Rec
+
+    FT_FRAME_START( 5 ),
+      FT_FRAME_BYTE  ( char_code ),
+      FT_FRAME_BYTE  ( del_m ),
+      FT_FRAME_BYTE  ( max_m ),
+      FT_FRAME_BYTE  ( del_n ),
+      FT_FRAME_BYTE  ( max_n ),
+    FT_FRAME_END
+  };
+
+
+  static const FT_Frame_Field  gf_charloc_fields[] =
+  {
+#undef  FT_STRUCTURE
+#define FT_STRUCTURE  GF_CharLocRec
+
+    FT_FRAME_START( 17 ),
+      FT_FRAME_BYTE  ( char_residue ),
+      FT_FRAME_LONG  ( dx ),
+      FT_FRAME_LONG  ( dy ),
+      FT_FRAME_LONG  ( w ),
+      FT_FRAME_LONG  ( ptr),
+    FT_FRAME_END
+  };
+
+
+  static const FT_Frame_Field  gf_charloc0_fields[] =
+  {
+#undef  FT_STRUCTURE
+#define FT_STRUCTURE  GF_CharLoc0Rec
+
+    FT_FRAME_START( 10 ),
+      FT_FRAME_BYTE  ( char_residue ),
+      FT_FRAME_BYTE  ( dm ),
+      FT_FRAME_LONG  ( w ),
+      FT_FRAME_LONG  ( ptr ),
+    FT_FRAME_END
+  };
 
   typedef struct  GF_CMapRec_
   {
@@ -52,6 +128,7 @@
   {
     FT_Error error = FT_Err_Ok;
     /* TO-DO */
+
     return error;
   }
 
@@ -60,6 +137,7 @@
   gf_cmap_done( FT_CMap  gfcmap )
   {
     /* TO-DO */
+
     return;
   }
 
@@ -69,6 +147,7 @@
   {
     FT_Error error = FT_Err_Ok;
     /* TO-DO */
+
     return ;
   }
 
@@ -80,11 +159,29 @@
                  FT_Int         num_params,
                  FT_Parameter*  params )
   {
-    FT_Error error = FT_Err_Ok;
-    /* TO-DO */
+    FT_Error       error  = FT_Err_Ok;
+    GF_Face        face   = (GF_Face)gfface;
+    FT_Memory      memory = FT_FACE_MEMORY( face );
+
+    FT_UNUSED( num_params );
+    FT_UNUSED( params );
+
+    FT_TRACE2(( "GF driver\n" ));
+
     return error;
   }
 
+
+  FT_CALLBACK_DEF( FT_Error )
+  GF_Size_Select(  FT_Size   size,
+                   FT_ULong  strike_index )
+  {
+    FT_Error       error  = FT_Err_Ok;
+    /* TO-DO*/
+
+    return error;
+
+  }
 
   FT_CALLBACK_DEF( FT_Error )
   GF_Size_Request( FT_Size          size,
@@ -92,6 +189,7 @@
   {
     FT_Error error = FT_Err_Ok;
     /* TO-DO */
+
     return error;
   }
 
@@ -105,6 +203,7 @@
   {
     FT_Error error = FT_Err_Ok;
     /* TO-DO */
+
     return error;
   }
 
